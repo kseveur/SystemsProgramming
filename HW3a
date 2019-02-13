@@ -1,0 +1,40 @@
+#!/usr/bin/python
+
+# This program will prompt the user to enter a file and a caesar cipher. Then it will
+# apply the cipher to the file.
+
+
+
+key = input("Please type a key : ")
+openfile = raw_input("Please type the file which you want to encrypt : ")
+outfile = raw_input("Please type the file name you would like to print to : ")
+
+f = open(openfile, "r")
+
+myfile = f.read().lower()
+
+file = open(outfile, "w")
+
+fileList = list(myfile)
+
+def ceasar(mylist, key):
+  cipherText = []
+
+  for symbol in mylist :
+     if symbol.isalpha() :
+         symbol = ord(symbol)+key
+         if 123 <= symbol :
+           symbol -= 26
+         symbol = chr(symbol)
+         cipherText.append(symbol)
+         file.write(symbol)
+     else :
+         cipherText.append(symbol)
+         file.write(symbol)
+
+  print ''.join(cipherText)
+
+
+
+ceasar(fileList, key)
+file.close()
