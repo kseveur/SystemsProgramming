@@ -1,0 +1,58 @@
+#!/usr/bin/python
+
+# Cato and Junius Brutus are using the cipher to encrypt their communications. In Latin as
+# well as that vulgar Germanic language Englisc the letter ’e’ is the most common letter. ’t’
+# is the second most common. Write a program to count the numbers of each letter in the
+# message. (i.e. how common is each symbol) Then use that to find the key for the message.
+# Use the file ceaser1.txt for input
+
+
+
+f = open('ceaser1.txt')
+
+file = open("outputresult.txt", "w")
+
+ff = f.read()
+
+l = list(ff)
+
+alphas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
+alphas = [i for i in alphas]
+max = 1
+freq = ''
+
+for index in alphas :
+    co = 0
+    co = l.count(index)
+    print str(index) + ' count= ' + str(co)
+    if co > max :
+           max = co
+           freq = str(index)
+print 'The most frequent letter is ' + freq
+print
+
+key = ord(freq) - ord('e')
+print 'key is ' + str(key)
+print
+:
+finallist2 = []
+
+for symbol in l :
+   if symbol.isalpha() :
+       symbol = chr(ord(symbol) - key)
+       newchar = ord(symbol)
+       if 123 <= newchar :
+         ascii -= 26
+       if 96 >= newchar :
+         newchar = 123-(97-newchar)
+       symbol = chr(newchar)
+       finallist2.append(symbol)
+       file.write(symbol)
+   else :
+       finallist2.append(symbol)
+       file.write(symbol)
+
+print ''.join(finallist2)
+
+file.close()
